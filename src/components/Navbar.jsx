@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faPlay, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faMinusCircle,
+  faPlay,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import brand from "../assets/brandLogo.png";
 import PrimaryButton from "./PrimaryButton";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function Navbar() {
   // user state
-  const { currentUser } = useAuth();
-
+  const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
   const routes = [
     {
@@ -77,10 +81,10 @@ export default function Navbar() {
             <li className="group">
               <img
                 className="h-10 w-10 rounded-full ml-10 border-2 border-primary object-cover"
-                src="https://img.freepik.com/free-photo/front-view-bearded-man-smiling_1153-413.jpg?w=1380&t=st=1682990170~exp=1682990770~hmac=7f6ec9d614ddbd3e38390e355f8ba3d7b078c7a35d822fac4129f19ea458a56f"
+                src={currentUser.photoURL}
                 alt="pro-pic"
               />
-              <div className="hidden group-hover:block group-hover:absolute right-16 mt-2">
+              <div className="hidden group-hover:block group-hover:absolute right-16">
                 <span className="flex justify-end mr-2">
                   <FontAwesomeIcon
                     className="-rotate-90 text-primary"
@@ -88,20 +92,27 @@ export default function Navbar() {
                   />
                 </span>
                 <p className="bg-primary text-white px-4 py-1 rounded">
-                  Faysal Ahmed
+                  {currentUser.displayName}
                 </p>
               </div>
             </li>
           )}
-          {!currentUser && (
-            <li>
+          <li>
+            {!currentUser ? (
               <PrimaryButton
                 onClickHandler={() => navigate("/login")}
                 text={"Login"}
                 style={"ml-10"}
               />
-            </li>
-          )}
+            ) : (
+              <span
+                onClick={() => logout()}
+                className="ml-5 font-bold text-secondary2 border border-secondary2 px-3 py-1 hover:bg-secondary2 hover:text-white cursor-pointer rounded"
+              >
+                LogOut
+              </span>
+            )}
+          </li>
         </ul>
       </div>
     </div>

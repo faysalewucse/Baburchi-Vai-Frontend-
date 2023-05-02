@@ -30,13 +30,14 @@ export function AuthProvider({ children }) {
   }, []);
 
   //signup function
-  async function signup(email, password, username) {
+  async function signup(email, password, username, photoURL) {
     const auth = getAuth();
     await createUserWithEmailAndPassword(auth, email, password);
 
     // updateProfile
     await updateProfile(auth.currentUser, {
       displayName: username,
+      photoURL,
     });
 
     const user = auth.currentUser;

@@ -2,14 +2,18 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Button from "./Button";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignupForm() {
   //styles
-  const inputStyle = "border-2 border-indigo-600 md:p-2 p-1 rounded md:text-xl";
+  const inputStyle =
+    "border border-secondary md:p-2 p-1 md:text-xl focus:outline-secondary2 rounded-lg";
 
   //Initialize Variables
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [photoUrl, setPhotoUrl] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [agree, setAgree] = useState("");
@@ -24,13 +28,13 @@ export default function SignupForm() {
     e.preventDefault();
     // do validation
     if (password !== confirmPassword) {
-      return setError("Passwords don't match!");
+      return notify("Passwords don't match!");
     }
 
     try {
       setError("");
       setLoading(true);
-      await signup(email, password, username);
+      await signup(email, password, username, photoUrl);
       navigate("/");
     } catch (err) {
       setLoading(false);
@@ -38,12 +42,16 @@ export default function SignupForm() {
     }
   }
 
+  const notify = (msg) => toast.error(msg, { autoClose: 1000 });
+
   return (
-    <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col gap-3 border border-secondary2 p-10 rounded-xl"
+      onSubmit={handleSubmit}
+    >
       <input
         type="text"
         placeholder="Enter name"
-        icon="person"
         required
         value={username}
         className={inputStyle}
@@ -54,10 +62,18 @@ export default function SignupForm() {
         type="text"
         required
         placeholder="Enter email"
-        icon="alternate_email"
         value={email}
         className={inputStyle}
         onChange={(e) => setEmail(e.target.value)}
+      />
+
+      <input
+        type="text"
+        required
+        placeholder="Enter Photo URL"
+        value={photoUrl}
+        className={inputStyle}
+        onChange={(e) => setPhotoUrl(e.target.value)}
       />
 
       <input
@@ -98,11 +114,12 @@ export default function SignupForm() {
 
       <div className="md:text-2xl font-bold">
         Already have an account?{" "}
-        <Link to="/login" className="text-blue-600 hover:text-blue-700">
+        <Link to="/login" className="text-secondary2 hover:text-primary">
           Login
         </Link>{" "}
         instead.
       </div>
+      <ToastContainer />
     </form>
   );
 }
