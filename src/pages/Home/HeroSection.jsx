@@ -25,8 +25,10 @@ export default function HeroSection() {
           you covered with our expertly curated collection of recipes.
         </p>
         <PrimaryButton
-          text={"Hire Chef"}
-          style={"w-1/2 mx-auto md:mx-0 md:ml-auto md:w-1/4"}
+          text={"HIRE CHEFS'"}
+          style={
+            "w-1/2 mx-auto md:mx-0 md:ml-auto md:w-1/4 md:text-2xl font-bold md:mr-3"
+          }
         />
       </div>
     </div>

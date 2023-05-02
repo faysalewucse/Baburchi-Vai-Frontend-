@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
-import GradientText from "../utils/GradientText";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faPlay, faXmark } from "@fortawesome/free-solid-svg-icons";
 import brand from "../assets/brandLogo.png";
+import PrimaryButton from "./PrimaryButton";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -11,14 +11,6 @@ export default function Navbar() {
     {
       path: "/",
       name: "Home",
-    },
-    {
-      path: "/statistics",
-      name: "Statistics",
-    },
-    {
-      path: "/applied-jobs",
-      name: "Applied Jobs",
     },
     {
       path: "/blog",
@@ -79,6 +71,27 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
+          <li className="group">
+            <img
+              className="h-10 w-10 rounded-full ml-10 border-2 border-primary object-cover"
+              src="https://img.freepik.com/free-photo/front-view-bearded-man-smiling_1153-413.jpg?w=1380&t=st=1682990170~exp=1682990770~hmac=7f6ec9d614ddbd3e38390e355f8ba3d7b078c7a35d822fac4129f19ea458a56f"
+              alt="pro-pic"
+            />
+            <div className="hidden group-hover:block group-hover:absolute right-16 mt-2">
+              <span className="flex justify-end mr-2">
+                <FontAwesomeIcon
+                  className="-rotate-90 text-primary"
+                  icon={faPlay}
+                />
+              </span>
+              <p className="bg-primary text-white px-4 py-1 rounded">
+                Faysal Ahmed
+              </p>
+            </div>
+          </li>
+          <li>
+            <PrimaryButton text={"Login"} style={"hidden"} />
+          </li>
         </ul>
       </div>
     </div>
