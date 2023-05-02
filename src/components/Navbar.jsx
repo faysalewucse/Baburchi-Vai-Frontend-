@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import GradientText from "../utils/GradientText";
-import PrimaryButton from "./PrimaryButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import brand from "../assets/brandLogo.png";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -29,13 +29,16 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-orange-200 sticky top-0 left-0 w-full p-5">
+    <div className="bg-orange-200 sticky top-0 left-0 w-full px-5">
       <div className="md:flex items-center justify-between bg-orange-200 py-4 md:px-10 px-7">
-        <div className="font-bold text-2xl cursor-pointer flex items-center text-gray-800">
-          <GradientText
-            onClickHandler={() => navigate("/")}
-            style="font-bold text-4xl bg-gradient-to-tr from-secondary2 to-secondary cursor-pointer"
-            text={"BaburchiVai"}
+        <div className="flex items-center">
+          <img
+            onClick={() => {
+              <Navigate to="/" />;
+            }}
+            className="w-1/3 md:w-1/6 cursor-pointer"
+            src={brand}
+            alt="brand"
           />
         </div>
 
