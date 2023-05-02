@@ -14,6 +14,7 @@ import { useAuth } from "../contexts/AuthContext";
 export default function Navbar() {
   // user state
   const { currentUser, logout } = useAuth();
+
   const navigate = useNavigate();
   const routes = [
     {
@@ -80,11 +81,11 @@ export default function Navbar() {
           {currentUser && (
             <li className="group">
               <img
-                className="h-10 w-10 rounded-full ml-10 border-2 border-primary object-cover"
+                className="h-10 w-10 rounded-full md:ml-10 border-2 border-primary object-cover"
                 src={currentUser.photoURL}
                 alt="pro-pic"
               />
-              <div className="hidden group-hover:block group-hover:absolute right-16">
+              <div className="hidden group-hover:block group-hover:absolute md:right-44">
                 <span className="flex justify-end mr-2">
                   <FontAwesomeIcon
                     className="-rotate-90 text-primary"
@@ -107,7 +108,7 @@ export default function Navbar() {
             ) : (
               <span
                 onClick={() => logout()}
-                className="ml-5 font-bold text-secondary2 border border-secondary2 px-3 py-1 hover:bg-secondary2 hover:text-white cursor-pointer rounded"
+                className="md:ml-5 font-bold text-secondary2 border border-secondary2 px-3 py-1 hover:bg-secondary2 hover:text-white cursor-pointer rounded"
               >
                 LogOut
               </span>

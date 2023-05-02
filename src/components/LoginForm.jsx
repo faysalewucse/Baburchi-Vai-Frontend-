@@ -17,7 +17,7 @@ export default function SignupForm() {
   const [error, setError] = useState();
   const [loading, setLoading] = useState();
 
-  const { login } = useAuth();
+  const { login, googleSignIn } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -75,6 +75,7 @@ export default function SignupForm() {
         <h1 className="font-semibold text-2xl text-secondary">Continue with</h1>
         <div className="flex items-center justify-center gap-3 mt-3">
           <img
+            onClick={() => googleSignIn()}
             className="hover:scale-110 transition-all duration-200 w-12 h-12 bg-orange-100 p-2"
             src={googleIcon}
             alt="google"
