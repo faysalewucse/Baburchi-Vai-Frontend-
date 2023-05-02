@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import ErrorPage from "./components/ErrorPage";
 import Main from "./components/Main";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   const router = createBrowserRouter([
@@ -13,7 +14,6 @@ function App() {
         {
           path: "/",
           element: <Home />,
-          loader: async () => await fetch("/jobs.json"),
         },
       ],
     },
@@ -21,7 +21,9 @@ function App() {
 
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </div>
   );
 }
