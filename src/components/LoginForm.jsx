@@ -59,7 +59,7 @@ export default function SignupForm() {
 
       <div className="md:text-2xl font-bold text-center">
         Don't have an account?{" "}
-        <Link to="/signup" className="text-blue-600 hover:text-blue-700">
+        <Link to="/register" className="text-secondary hover:text-secondary2">
           Sign Up
         </Link>{" "}
         instead.

@@ -29,9 +29,7 @@ export default function Navbar() {
       <div className="md:flex items-center justify-between bg-orange-200 py-4 md:px-10 px-7">
         <div className="flex items-center">
           <img
-            onClick={() => {
-              <Navigate to="/" />;
-            }}
+            onClick={() => navigate("/")}
             className="w-1/3 md:w-1/6 cursor-pointer"
             src={brand}
             alt="brand"

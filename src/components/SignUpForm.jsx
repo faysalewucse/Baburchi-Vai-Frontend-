@@ -92,7 +92,7 @@ export default function SignupForm() {
         <label htmlFor="condition"> I Agree to the Terms and Condition</label>
       </div>
 
-      <Button loading={loading} text="Sign Up" />
+      <Button loading={loading} text="Register" />
 
       {error && <p className="error">{error}</p>}
 
