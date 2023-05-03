@@ -49,13 +49,15 @@ export default function Footer() {
               type="text"
               placeholder="Email Address"
             />
-            <i className="fa-solid fa-paper-plane bg-primary p-3 text-secondary rounded-lg -ml-8"></i>
+            <i className="fa-solid fa-paper-plane bg-secondary p-3 text-white cursor-pointer rounded-lg -ml-8"></i>
           </form>
         </div>
       </div>
       <hr className="border border-orange-400 my-5" />
       <div className="flex justify-between">
-        <h1 className="text-secondary">@2023 JobsLand. All Rights Reserved</h1>
+        <h1 className="text-secondary">
+          @2023 Baburchivai. All Rights Reserved
+        </h1>
         <h1 className="text-secondary">
           Powered by <b>BaburchiVai</b>
         </h1>
