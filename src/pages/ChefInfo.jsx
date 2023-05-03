@@ -2,12 +2,14 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLoaderData } from "react-router-dom";
 import RecipeCard from "../components/RecipeCard";
-import { useEffect } from "react";
 import ScrollToTop from "../utils/ScrollToTop";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ChefInfo() {
   const chefInfo = useLoaderData();
   const {
+    id,
     chef_name,
     chef_picture,
     years_of_experience,
@@ -19,6 +21,10 @@ export default function ChefInfo() {
 
   ScrollToTop();
 
+  const notify = (msg, chefId, index) => {
+    localStorage.setItem("favourite", JSON.stringify({ chefId, index }));
+    toast.success(msg);
+  };
   return (
     <div className="">
       <div className="max-w-7xl mx-auto p-10">
@@ -56,10 +62,19 @@ export default function ChefInfo() {
         {/* Recipes */}
         <div className="md:grid grid-cols-2 gap-5 py-10">
           {recipes?.map((recipe, index) => {
-            return <RecipeCard key={index} recipe={recipe} />;
+            return (
+              <RecipeCard
+                chefId={id}
+                index={index}
+                key={index}
+                recipe={recipe}
+                notify={notify}
+              />
+            );
           })}
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

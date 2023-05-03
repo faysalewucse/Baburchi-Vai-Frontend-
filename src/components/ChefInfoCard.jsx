@@ -20,7 +20,7 @@ export default function ChefInfoCard({ info }) {
       <img
         className="md:w-1/2 w-full h-56 object-top object-cover md:rounded-l-2xl"
         src={chef_picture}
-        alt=""
+        alt="chef_picture"
       />
       <div className="md:py-5 p-5 flex flex-col justify-between">
         <div>
