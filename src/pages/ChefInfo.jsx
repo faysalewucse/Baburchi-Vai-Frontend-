@@ -1,22 +1,25 @@
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLoaderData } from "react-router-dom";
+import RecipeCard from "../components/RecipeCard";
 
 export default function ChefInfo() {
   const chefInfo = useLoaderData();
   const {
-    id,
     chef_name,
     chef_picture,
     years_of_experience,
     likes,
     number_of_recipes,
     chefBio,
+    recipes,
   } = chefInfo;
+
   return (
     <div className="">
       <div className="max-w-7xl mx-auto p-10">
-        <div className="bg-orange-100 md:flex rounded-lg p-5">
+        {/* Banner */}
+        <div className="bg-gradient-to-tr to-orange-50 from-red-100 md:flex rounded-lg p-5">
           <img
             className="md:w-1/4 rounded-lg object-cover"
             src={chef_picture}
@@ -45,6 +48,12 @@ export default function ChefInfo() {
               {chefBio}
             </p>
           </div>
+        </div>
+        {/* Recipes */}
+        <div className="grid grid-cols-2 gap-5 py-10">
+          {recipes?.map((recipe, index) => {
+            return <RecipeCard key={index} recipe={recipe} />;
+          })}
         </div>
       </div>
     </div>
