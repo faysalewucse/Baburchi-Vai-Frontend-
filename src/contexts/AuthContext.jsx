@@ -21,12 +21,11 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [currentUser, setCurrentUser] = useState();
   const auth = getAuth();
 
   useEffect(() => {
-    const githubAuthProvider = new GithubAuthProvider();
-
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
       setLoading(false);
@@ -56,26 +55,29 @@ export function AuthProvider({ children }) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
-  // signin with popup
+  // signin with google
   async function googleSignIn() {
     const googleAuthProvider = new GoogleAuthProvider();
     return signInWithPopup(auth, googleAuthProvider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        // The signed-in user info.
         const user = result.user;
         setCurrentUser({ ...user });
       })
       .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
+        setError(error.message);
+      });
+  }
+
+  // signin with github
+  async function gitHubSignIn() {
+    const githubAuthProvider = new GithubAuthProvider();
+    return signInWithPopup(auth, githubAuthProvider)
+      .then((result) => {
+        const user = result.user;
+        setCurrentUser({ ...user });
+      })
+      .catch((error) => {
+        setError(error.message);
       });
   }
 
@@ -87,10 +89,12 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
+    error,
     signup,
     login,
     logout,
     googleSignIn,
+    gitHubSignIn,
   };
 
   return (

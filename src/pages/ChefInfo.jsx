@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLoaderData } from "react-router-dom";
 import RecipeCard from "../components/RecipeCard";
 import { useEffect } from "react";
+import ScrollToTop from "../utils/ScrollToTop";
 
 export default function ChefInfo() {
   const chefInfo = useLoaderData();
@@ -16,9 +17,7 @@ export default function ChefInfo() {
     recipes,
   } = chefInfo;
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  ScrollToTop();
 
   return (
     <div className="">

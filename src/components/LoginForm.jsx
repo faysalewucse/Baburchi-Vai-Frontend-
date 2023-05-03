@@ -5,7 +5,7 @@ import Button from "./Button";
 import googleIcon from "../assets/google.png";
 import githubIcon from "../assets/github.png";
 
-export default function SignupForm() {
+export default function LoginForm({ notify }) {
   //styles
   const inputStyle =
     "border border-secondary2 rounded-lg md:p-2 p-1 md:text-xl focus:outline-secondary2";
@@ -14,23 +14,21 @@ export default function SignupForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [error, setError] = useState();
   const [loading, setLoading] = useState();
 
-  const { login, googleSignIn } = useAuth();
+  const { login, googleSignIn, gitHubSignIn } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      setError("");
       setLoading(true);
       await login(email, password);
       navigate("/");
     } catch (err) {
       setLoading(false);
-      setError("Failed to Login! Try again");
+      notify(err);
     }
   }
 
@@ -61,8 +59,6 @@ export default function SignupForm() {
 
       <Button loading={loading} text="Login" />
 
-      {error && <p className="error text-red-600 text-xl">{error}</p>}
-
       <div className="md:text-2xl font-bold text-center text-primary">
         Don't have an account?{" "}
         <Link to="/register" className="text-secondary hover:text-secondary2">
@@ -81,6 +77,7 @@ export default function SignupForm() {
             alt="google"
           />
           <img
+            onClick={() => gitHubSignIn()}
             className="hover:scale-110 transition-all duration-200 w-12 bg-orange-100"
             src={githubIcon}
             alt="github"

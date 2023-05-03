@@ -11,7 +11,7 @@ export default function Blog() {
   );
 
   return (
-    <div className="max-w-7xl mx-auto font-common mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 text-2xl p-2">
+    <div className="max-w-7xl mx-auto font-common mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 text-2xl p-2 mb-10">
       {/* Blog-1 */}
       <BlogCard
         question="Differences between uncontrolled and controlled components"

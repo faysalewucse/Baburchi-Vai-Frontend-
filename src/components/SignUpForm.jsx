@@ -68,19 +68,9 @@ export default function SignupForm() {
       />
 
       <input
-        type="text"
-        required
-        placeholder="Enter Photo URL"
-        value={photoUrl}
-        className={inputStyle}
-        onChange={(e) => setPhotoUrl(e.target.value)}
-      />
-
-      <input
         type="password"
         required
         placeholder="Enter password"
-        icon="lock"
         value={password}
         className={inputStyle}
         onChange={(e) => setPassword(e.target.value)}
@@ -90,10 +80,17 @@ export default function SignupForm() {
         type="password"
         required
         placeholder="Confirm password"
-        icon="lock_clock"
         value={confirmPassword}
         className={inputStyle}
         onChange={(e) => setConfirmPassword(e.target.value)}
+      />
+
+      <input
+        required
+        placeholder="Enter Photo URL"
+        value={photoUrl}
+        className={inputStyle}
+        onChange={(e) => setPhotoUrl(e.target.value)}
       />
 
       <div>
