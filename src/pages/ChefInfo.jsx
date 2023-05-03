@@ -16,20 +16,22 @@ export default function ChefInfo() {
   return (
     <div className="">
       <div className="max-w-7xl mx-auto p-10">
-        <div className="bg-orange-100 flex rounded-lg p-5">
+        <div className="bg-orange-100 md:flex rounded-lg p-5">
           <img
-            className="w-1/4 rounded-lg object-cover"
+            className="md:w-1/4 rounded-lg object-cover"
             src={chef_picture}
             alt="chef-image"
           />
-          <div className="p-5">
-            <h1 className="text-4xl font-bold text-secondary2">{chef_name}</h1>
+          <div className="p-5 text-center md:text-left">
+            <h1 className="md:text-4xl text-2xl font-bold text-secondary2">
+              {chef_name}
+            </h1>
             <h4 className="text-xl font-bold text-secondary">Experience</h4>
             <p className="text-lg">{years_of_experience} years</p>
             <h4 className="text-xl font-bold text-secondary">Recipes</h4>
             <p className="text-lg">{number_of_recipes}</p>
 
-            <div className="flex gap-2 items-center mb-5">
+            <div className="flex gap-2 items-center mb-5 justify-center md:justify-start">
               <FontAwesomeIcon
                 className="text-secondary2 text-xl"
                 icon={faThumbsUp}
