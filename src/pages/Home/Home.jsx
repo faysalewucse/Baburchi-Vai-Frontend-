@@ -2,6 +2,7 @@ import HeroSection from "./HeroSection";
 import OurStory from "./OurStory";
 import { useLoaderData } from "react-router-dom";
 import Chefs from "./Chefs";
+import Contact from "./Contact";
 
 export default function Home() {
   const chefs = useLoaderData();
@@ -11,6 +12,7 @@ export default function Home() {
       <HeroSection />
       <OurStory />
       <Chefs chefs={chefs} />
+      <Contact />
     </div>
   );
 }
