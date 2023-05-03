@@ -2,6 +2,7 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLoaderData } from "react-router-dom";
 import RecipeCard from "../components/RecipeCard";
+import { useEffect } from "react";
 
 export default function ChefInfo() {
   const chefInfo = useLoaderData();
@@ -14,6 +15,10 @@ export default function ChefInfo() {
     chefBio,
     recipes,
   } = chefInfo;
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div className="">
@@ -50,7 +55,7 @@ export default function ChefInfo() {
           </div>
         </div>
         {/* Recipes */}
-        <div className="grid grid-cols-2 gap-5 py-10">
+        <div className="md:grid grid-cols-2 gap-5 py-10">
           {recipes?.map((recipe, index) => {
             return <RecipeCard key={index} recipe={recipe} />;
           })}

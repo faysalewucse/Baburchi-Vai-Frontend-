@@ -8,6 +8,7 @@ import Signup from "./pages/SignUp";
 import PublicRoute from "./hooks/PublicRoute";
 import PrivateRoute from "./hooks/PrivateRoute";
 import ChefInfo from "./pages/ChefInfo";
+import Blog from "./pages/Blog";
 
 function App() {
   const router = createBrowserRouter([
@@ -20,6 +21,10 @@ function App() {
           path: "/",
           element: <Home />,
           loader: () => fetch("http://localhost:5000/chefs"),
+        },
+        {
+          path: "/blog",
+          element: <Blog />,
         },
         {
           path: "/login",

@@ -16,13 +16,13 @@ export default function ChefInfoCard({ info }) {
   } = info;
 
   return (
-    <div className="flex gap-3 bg-white rounded-2xl">
+    <div className="md:flex gap-3 bg-white md:rounded-2xl mb-5 md:mb-0">
       <img
-        className="w-1/2 h-56 object-top object-cover rounded-l-2xl"
+        className="md:w-1/2 w-full h-56 object-top object-cover md:rounded-l-2xl"
         src={chef_picture}
         alt=""
       />
-      <div className="py-5 flex flex-col justify-between">
+      <div className="md:py-5 p-5 flex flex-col justify-between">
         <div>
           <h1 className="text-2xl font-bold">{chef_name}</h1>
           <h1 className="text-lg">Experience: {years_of_experience} Years</h1>
@@ -35,7 +35,7 @@ export default function ChefInfoCard({ info }) {
         <PrimaryButton
           onClickHandler={() => navigate(`/chef/${id}`)}
           text={"View Recipes"}
-          style={"w-48"}
+          style={"md:w-48 mt-5 md:mt-0"}
         />
         {/* <FontAwesomeIcon icon={faHeart} className="text-2xl cursor-pointer" /> */}
       </div>
