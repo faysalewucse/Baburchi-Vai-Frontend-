@@ -2,13 +2,11 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import Button from "./Button";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function SignupForm() {
   //styles
   const inputStyle =
-    "border border-secondary md:p-2 p-1 md:text-xl focus:outline-secondary2 rounded-lg";
+    "border border-secondary p-2 md:text-xl focus:outline-secondary2 rounded-lg";
 
   //Initialize Variables
   const [username, setUsername] = useState("");
@@ -42,11 +40,9 @@ export default function SignupForm() {
     }
   }
 
-  const notify = (msg) => toast.error(msg, { autoClose: 1000 });
-
   return (
     <form
-      className="flex flex-col gap-3 border border-secondary2 p-10 rounded-xl"
+      className="flex flex-col gap-3 border border-secondary2 md:p-10 p-5 rounded-xl"
       onSubmit={handleSubmit}
     >
       <input
@@ -116,7 +112,6 @@ export default function SignupForm() {
         </Link>{" "}
         instead.
       </div>
-      <ToastContainer />
     </form>
   );
 }

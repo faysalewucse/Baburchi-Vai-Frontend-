@@ -8,7 +8,7 @@ import githubIcon from "../assets/github.png";
 export default function LoginForm({ notify }) {
   //styles
   const inputStyle =
-    "border border-secondary2 rounded-lg md:p-2 p-1 md:text-xl focus:outline-secondary2";
+    "border border-secondary2 rounded-lg p-2 md:text-xl focus:outline-secondary2";
 
   //Initialize Variables
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ export default function LoginForm({ notify }) {
 
   return (
     <form
-      className="flex flex-col gap-3 border border-secondary2 p-10 rounded-xl"
+      className="flex flex-col gap-3 border border-secondary2 md:p-10 p-5 rounded-xl"
       onSubmit={handleSubmit}
     >
       <input
@@ -68,7 +68,9 @@ export default function LoginForm({ notify }) {
       </div>
       <div className="text-center">
         <h1 className="font-bold">OR</h1>
-        <h1 className="font-semibold text-2xl text-secondary">Continue with</h1>
+        <h1 className="font-semibold md:text-2xl text-lg text-secondary">
+          Continue with
+        </h1>
         <div className="flex items-center justify-center gap-3 mt-3">
           <img
             onClick={() => googleSignIn()}
