@@ -6,6 +6,8 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
 import PublicRoute from "./hooks/PublicRoute";
+import PrivateRoute from "./hooks/PrivateRoute";
+import ChefInfo from "./pages/ChefInfo";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +35,16 @@ function App() {
             <PublicRoute>
               <Signup />
             </PublicRoute>
+          ),
+        },
+        {
+          path: "/chef/:chefId",
+          loader: ({ params }) =>
+            fetch(`http://localhost:5000/chef/${params.chefId}`),
+          element: (
+            <PrivateRoute>
+              <ChefInfo />
+            </PrivateRoute>
           ),
         },
       ],
