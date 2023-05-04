@@ -9,7 +9,6 @@ export default function Profile() {
 
   const updateProfile = async (e) => {
     e.preventDefault();
-    console.log(newDisplayName, newPhotoURL);
     await updateUserProfile(newDisplayName, newPhotoURL);
     setModal(false);
   };
@@ -43,7 +42,7 @@ export default function Profile() {
             onClick={() => setModal(false)}
             className="fixed w-full h-full inset-0 z-10 bg-black/50 cursor-pointer"
           ></div>
-          <div className="rounded w-3/4 overflow-auto lg:w-2/5 bg-white p-10 absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+          <div className="rounded w-3/4 overflow-auto lg:w-2/5 bg-white p-2 md:p-10 absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
             <form onSubmit={updateProfile} className="text-left p-5 md:p-10">
               <label
                 className="font-bold text-secondary2"

@@ -5,7 +5,7 @@ import Button from "./Button";
 import googleIcon from "../assets/google.png";
 import githubIcon from "../assets/github.png";
 
-export default function LoginForm({ notify }) {
+export default function LoginForm({ notify, forgotPassword }) {
   //styles
   const inputStyle =
     "border border-secondary2 rounded-lg p-2 md:text-xl focus:outline-secondary2";
@@ -16,7 +16,7 @@ export default function LoginForm({ notify }) {
 
   const [loading, setLoading] = useState();
 
-  const { login, googleSignIn, gitHubSignIn } = useAuth();
+  const { login, googleSignIn, gitHubSignIn, resetPassword } = useAuth();
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -57,6 +57,9 @@ export default function LoginForm({ notify }) {
         onChange={(e) => setPassword(e.target.value)}
       />
 
+      <h1 onClick={forgotPassword} className="text-secondary2 text-right">
+        <u>Forgot Password?</u>
+      </h1>
       <Button loading={loading} text="Login" />
 
       <div className="md:text-2xl font-bold text-center text-primary">
@@ -74,13 +77,13 @@ export default function LoginForm({ notify }) {
         <div className="flex items-center justify-center gap-3 mt-3">
           <img
             onClick={() => googleSignIn()}
-            className="hover:scale-110 transition-all duration-200 w-12 h-12 bg-orange-100 p-2"
+            className="hover:scale-110 transition-all duration-200 w-12 h-12 bg-orange-100 p-2 cursor-pointer"
             src={googleIcon}
             alt="google"
           />
           <img
             onClick={() => gitHubSignIn()}
-            className="hover:scale-110 transition-all duration-200 w-12 bg-orange-100"
+            className="hover:scale-110 transition-all duration-200 w-12 bg-orange-100 cursor-pointer"
             src={githubIcon}
             alt="github"
           />

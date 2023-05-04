@@ -11,6 +11,7 @@ import {
   GoogleAuthProvider,
   GithubAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 const AuthContext = React.createContext();
@@ -91,6 +92,17 @@ export function AuthProvider({ children }) {
     return signOut(auth);
   }
 
+  function resetPassword(email, notify) {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        console.log("DOne");
+        notify("Password reset email sent!");
+      })
+      .catch((error) => {
+        console.log("Not DOne");
+        notify(error.message);
+      });
+  }
   const value = {
     currentUser,
     error,
@@ -100,6 +112,7 @@ export function AuthProvider({ children }) {
     googleSignIn,
     gitHubSignIn,
     updateUserProfile,
+    resetPassword,
   };
 
   return (
