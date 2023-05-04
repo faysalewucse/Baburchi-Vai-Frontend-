@@ -20,7 +20,8 @@ function App() {
         {
           path: "/",
           element: <Home />,
-          loader: () => fetch("http://localhost:5000/chefs"),
+          loader: async () =>
+            await fetch("https://baburchi-vai-faysalewucse.vercel.app/chefs"),
         },
         {
           path: "/blog",
@@ -44,8 +45,10 @@ function App() {
         },
         {
           path: "/chef/:chefId",
-          loader: ({ params }) =>
-            fetch(`http://localhost:5000/chef/${params.chefId}`),
+          loader: async ({ params }) =>
+            await fetch(
+              `https://baburchi-vai-faysalewucse.vercel.app/chef/${params.chefId}`
+            ),
           element: (
             <PrivateRoute>
               <ChefInfo />
