@@ -11,7 +11,7 @@ import { useState } from "react";
 
 export default function ChefInfo() {
   const chefInfo = useLoaderData();
-  const [favouriteRecipes, setFavouriteRecipes] = useState(
+  let [favouriteRecipes, setFavouriteRecipes] = useState(
     JSON.parse(localStorage.getItem("favourite"))
   );
 
@@ -34,11 +34,13 @@ export default function ChefInfo() {
   };
 
   const addToFavourite = (recipeDetails) => {
-    let favouriteRecipes = JSON.parse(localStorage.getItem("favourite"));
     if (favouriteRecipes) {
-      favouriteRecipes.push(recipeDetails);
+      favouriteRecipes.push({
+        id: favouriteRecipes[favouriteRecipes.length - 1].id + 1,
+        ...recipeDetails,
+      });
     } else {
-      favouriteRecipes = [recipeDetails];
+      favouriteRecipes = [{ id: 1, ...recipeDetails }];
     }
 
     localStorage.setItem("favourite", JSON.stringify(favouriteRecipes));
@@ -105,6 +107,7 @@ export default function ChefInfo() {
                   recipe={recipe}
                   favouriteRecipes={favouriteRecipes}
                   addToFavourite={addToFavourite}
+                  favouriteBtn={true}
                 />
               );
             })}
