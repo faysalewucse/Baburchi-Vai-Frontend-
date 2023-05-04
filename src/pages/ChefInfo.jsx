@@ -6,6 +6,7 @@ import ScrollToTop from "../utils/ScrollToTop";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CirclesWithBar } from "react-loader-spinner";
+import LazyLoad from "react-lazy-load";
 
 export default function ChefInfo() {
   const chefInfo = useLoaderData();
@@ -43,12 +44,15 @@ export default function ChefInfo() {
       ) : (
         <div className="max-w-7xl mx-auto p-10">
           {/* Banner */}
-          <div className="bg-gradient-to-tr to-orange-50 from-red-100 md:flex rounded-lg p-5">
-            <img
-              className="md:w-1/4 rounded-lg object-cover"
-              src={chef_picture}
-              alt="chef-image"
-            />
+          <div className="bg-gradient-to-tr to-orange-50 from-red-100 md:flex items-center rounded-lg p-5">
+            <LazyLoad threshold={0.5}>
+              <img
+                className="md:max-w-sm rounded-lg object-cover"
+                src={chef_picture}
+                alt="chef-image"
+              />
+            </LazyLoad>
+
             <div className="p-5 text-center md:text-left">
               <h1 className="md:text-4xl text-2xl font-bold text-secondary2">
                 {chef_name}

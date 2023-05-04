@@ -3,6 +3,7 @@ import PrimaryButton from "./PrimaryButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import LazyLoad from "react-lazy-load";
 
 export default function ChefInfoCard({ info }) {
   const navigate = useNavigate();
@@ -17,11 +18,13 @@ export default function ChefInfoCard({ info }) {
 
   return (
     <div className="md:flex gap-3 bg-white md:rounded-2xl mb-5 md:mb-0">
-      <img
-        className="md:w-1/2 w-full h-56 object-top object-cover md:rounded-l-2xl"
-        src={chef_picture}
-        alt="chef_picture"
-      />
+      <LazyLoad threshold={0.5}>
+        <img
+          className="md:w-72 w-full h-56 object-top object-cover md:rounded-l-2xl"
+          src={chef_picture}
+          alt="chef_picture"
+        />
+      </LazyLoad>
       <div className="md:py-5 p-5 flex flex-col justify-between">
         <div>
           <h1 className="text-2xl font-bold">{chef_name}</h1>
