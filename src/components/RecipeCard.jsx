@@ -3,19 +3,20 @@ import {
   faThumbsUp,
   faHeart as faHeartSolid,
 } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-export default function RecipeCard({ chefId, index, recipe, notify }) {
-  const { chefId: savedChefId, index: savedIndex } = JSON.parse(
-    localStorage.getItem("favourite")
-  );
+export default function RecipeCard({
+  chefId,
+  index,
+  recipe,
+  addToFavourite,
+  favouriteRecipes,
+}) {
   const { recipeName, ingredients, cookingMethod, rating, likes } = recipe;
 
-  console.log(chefId, savedChefId, index, savedIndex);
   return (
-    <div className="bg-gradient-to-tr to-red-50 from-red-200 border border-secondary p-7 rounded-2xl mb-5 md:mb-0">
+    <div className="bg-gradient-to-tr to-orange-50 from-orange-200 border border-secondary p-7 rounded-2xl mb-5 md:mb-0">
       <div className="md:flex items-center justify-between">
         <h1 className="text-center text-3xl font-bold text-secondary2">
           {recipeName}
@@ -29,21 +30,20 @@ export default function RecipeCard({ chefId, index, recipe, notify }) {
             <FontAwesomeIcon icon={faThumbsUp} />
             <span>{likes}</span>
           </div>
-          {chefId === savedChefId && index !== savedChefId ? (
-            <FontAwesomeIcon
-              onClick={() =>
-                notify("Added to your favorite recipe.", chefId, index)
-              }
-              className="text-secondary text-2xl hover:scale-125 transition-all duration-200"
-              icon={faHeart}
-              title="Make Favourite"
-            />
-          ) : (
-            <FontAwesomeIcon
-              className="text-secondary text-2xl cursor-not-allowed"
-              icon={faHeartSolid}
-            />
-          )}
+          <button
+            onClick={() => addToFavourite({ chefId, index })}
+            disabled={favouriteRecipes?.some(
+              (recipe) => chefId === recipe.chefId && index === recipe.index
+            )}
+            className={`bg-secondary hover:bg-secondary2 text-white p-2 rounded flex items-center gap-2 ${
+              favouriteRecipes?.some(
+                (recipe) => chefId === recipe.chefId && index === recipe.index
+              ) && "opacity-50 cursor-not-allowed"
+            }`}
+          >
+            <FontAwesomeIcon icon={faHeartSolid} />
+            Favourite
+          </button>
         </div>
       </div>
       <p className="font-semibold text-lg mt-2 text-secondary2">Ingredients</p>

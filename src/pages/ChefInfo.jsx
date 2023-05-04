@@ -7,9 +7,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CirclesWithBar } from "react-loader-spinner";
 import LazyLoad from "react-lazy-load";
+import { useState } from "react";
 
 export default function ChefInfo() {
   const chefInfo = useLoaderData();
+  const [favouriteRecipes, setFavouriteRecipes] = useState(
+    JSON.parse(localStorage.getItem("favourite"))
+  );
+
   const navigation = useNavigation();
   const {
     id,
@@ -24,9 +29,21 @@ export default function ChefInfo() {
 
   ScrollToTop();
 
-  const notify = (msg, chefId, index) => {
-    localStorage.setItem("favourite", JSON.stringify({ chefId, index }));
-    toast.success(msg);
+  const notify = (msg) => {
+    toast.success(msg, { autoClose: 2000 });
+  };
+
+  const addToFavourite = (recipeDetails) => {
+    let favouriteRecipes = JSON.parse(localStorage.getItem("favourite"));
+    if (favouriteRecipes) {
+      favouriteRecipes.push(recipeDetails);
+    } else {
+      favouriteRecipes = [recipeDetails];
+    }
+
+    localStorage.setItem("favourite", JSON.stringify(favouriteRecipes));
+    notify("Added to your favourite recipe.");
+    setFavouriteRecipes(JSON.parse(localStorage.getItem("favourite")));
   };
 
   return (
@@ -44,7 +61,7 @@ export default function ChefInfo() {
       ) : (
         <div className="max-w-7xl mx-auto p-10">
           {/* Banner */}
-          <div className="bg-gradient-to-tr to-orange-50 from-red-100 md:flex items-center rounded-lg p-5">
+          <div className="bg-gradient-to-tr to-orange-50 from-orange-100 md:flex items-center rounded-lg p-5">
             <LazyLoad threshold={0.5}>
               <img
                 className="md:max-w-sm rounded-lg object-cover"
@@ -86,7 +103,8 @@ export default function ChefInfo() {
                   index={index}
                   key={index}
                   recipe={recipe}
-                  notify={notify}
+                  favouriteRecipes={favouriteRecipes}
+                  addToFavourite={addToFavourite}
                 />
               );
             })}

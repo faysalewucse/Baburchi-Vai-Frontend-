@@ -82,7 +82,7 @@ export default function Navbar() {
             <li className="group">
               <img
                 className="h-10 w-10 rounded-full md:ml-10 border-2 border-primary object-cover"
-                src={currentUser.photoURL}
+                src={currentUser?.photoURL}
                 alt="pro-pic"
               />
               <div className="hidden group-hover:block group-hover:absolute md:right-44">

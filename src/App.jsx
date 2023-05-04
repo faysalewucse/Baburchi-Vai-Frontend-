@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home/Home";
-import ErrorPage from "./components/ErrorPage";
 import Main from "./components/Main";
 import { AuthProvider } from "./contexts/AuthContext";
 import Login from "./pages/Login";
@@ -9,6 +8,7 @@ import PublicRoute from "./hooks/PublicRoute";
 import PrivateRoute from "./hooks/PrivateRoute";
 import ChefInfo from "./pages/ChefInfo";
 import Blog from "./pages/Blog";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   const router = createBrowserRouter([
