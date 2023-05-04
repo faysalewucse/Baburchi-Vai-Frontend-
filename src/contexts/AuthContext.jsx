@@ -40,13 +40,17 @@ export function AuthProvider({ children }) {
     await createUserWithEmailAndPassword(auth, email, password);
 
     // updateProfile
+    await updateUserProfile(username, photoURL);
+
+    const user = auth.currentUser;
+    setCurrentUser({ ...user });
+  }
+
+  async function updateUserProfile(username, photoURL) {
     await updateProfile(auth.currentUser, {
       displayName: username,
       photoURL: photoURL,
     });
-
-    const user = auth.currentUser;
-    setCurrentUser({ ...user });
   }
 
   //login function
@@ -95,6 +99,7 @@ export function AuthProvider({ children }) {
     logout,
     googleSignIn,
     gitHubSignIn,
+    updateUserProfile,
   };
 
   return (

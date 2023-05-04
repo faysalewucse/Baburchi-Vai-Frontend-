@@ -85,6 +85,7 @@ export default function Navbar() {
           {currentUser && (
             <li className="group">
               <img
+                onClick={() => navigate("/profile")}
                 className="h-10 w-10 rounded-full md:ml-10 border-2 border-primary object-cover"
                 src={currentUser?.photoURL}
                 alt="pro-pic"

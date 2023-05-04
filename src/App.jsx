@@ -10,6 +10,7 @@ import ChefInfo from "./pages/ChefInfo";
 import Blog from "./pages/Blog";
 import ErrorPage from "./pages/ErrorPage";
 import Favourites from "./pages/Favourites";
+import Profile from "./pages/Profile";
 
 function App() {
   const router = createBrowserRouter([
@@ -61,6 +62,14 @@ function App() {
           element: (
             <PrivateRoute>
               <Favourites />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/profile",
+          element: (
+            <PrivateRoute>
+              <Profile />
             </PrivateRoute>
           ),
         },
