@@ -25,6 +25,10 @@ export default function Navbar() {
       path: "/blog",
       name: "Blog",
     },
+    {
+      path: "/favourites",
+      name: "Favourite Recipes",
+    },
   ];
 
   const [open, setOpen] = useState(false);

@@ -99,7 +99,7 @@ export default function ChefInfo() {
             {recipes?.map((recipe, index) => {
               return (
                 <RecipeCard
-                  chefId={id}
+                  chefInfo={chefInfo}
                   index={index}
                   key={index}
                   recipe={recipe}

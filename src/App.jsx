@@ -9,6 +9,7 @@ import PrivateRoute from "./hooks/PrivateRoute";
 import ChefInfo from "./pages/ChefInfo";
 import Blog from "./pages/Blog";
 import ErrorPage from "./pages/ErrorPage";
+import Favourites from "./pages/Favourites";
 
 function App() {
   const router = createBrowserRouter([
@@ -52,6 +53,14 @@ function App() {
           element: (
             <PrivateRoute>
               <ChefInfo />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/favourites",
+          element: (
+            <PrivateRoute>
+              <Favourites />
             </PrivateRoute>
           ),
         },

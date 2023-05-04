@@ -7,11 +7,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 export default function RecipeCard({
-  chefId,
+  chefInfo,
   index,
   recipe,
   addToFavourite,
   favouriteRecipes,
+  favouriteBtn,
 }) {
   const { recipeName, ingredients, cookingMethod, rating, likes } = recipe;
 
@@ -30,20 +31,24 @@ export default function RecipeCard({
             <FontAwesomeIcon icon={faThumbsUp} />
             <span>{likes}</span>
           </div>
-          <button
-            onClick={() => addToFavourite({ chefId, index })}
-            disabled={favouriteRecipes?.some(
-              (recipe) => chefId === recipe.chefId && index === recipe.index
-            )}
-            className={`bg-secondary hover:bg-secondary2 text-white p-2 rounded flex items-center gap-2 ${
-              favouriteRecipes?.some(
-                (recipe) => chefId === recipe.chefId && index === recipe.index
-              ) && "opacity-50 cursor-not-allowed"
-            }`}
-          >
-            <FontAwesomeIcon icon={faHeartSolid} />
-            Favourite
-          </button>
+          {favouriteBtn && (
+            <button
+              onClick={() => addToFavourite({ index, chefInfo, recipe })}
+              disabled={favouriteRecipes?.some(
+                (recipe) =>
+                  chefInfo.id === recipe.chefInfo.id && index === recipe.index
+              )}
+              className={`bg-secondary hover:bg-secondary2 text-white p-2 rounded flex items-center gap-2 ${
+                favouriteRecipes?.some(
+                  (recipe) =>
+                    chefInfo.id === recipe.chefInfo.id && index === recipe.index
+                ) && "opacity-50 cursor-not-allowed"
+              }`}
+            >
+              <FontAwesomeIcon icon={faHeartSolid} />
+              Favourite
+            </button>
+          )}
         </div>
       </div>
       <p className="font-semibold text-lg mt-2 text-secondary2">Ingredients</p>
